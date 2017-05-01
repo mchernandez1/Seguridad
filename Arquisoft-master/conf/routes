@@ -1,0 +1,76 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                               controllers.Application.index
+GET     /restrictIndex                  controllers.RestrictController.index
+GET     /restrict1                      controllers.RestrictController.restrictOne
+GET     /restrict2                      controllers.RestrictController.restrictTwo
+GET     /restrict3                      controllers.RestrictController.restrictThree
+GET     /restrict4                      controllers.RestrictController.restrictFour
+GET     /restrict5                      controllers.RestrictController.restrictFive
+GET     /customRestrict1                controllers.RestrictController.customRestrictOne
+GET     /customRestrict2                controllers.RestrictController.customRestrictTwo
+GET     /index                          controllers.DynamicRestrictionsController.index
+GET     /pureLuck                       controllers.DynamicRestrictionsController.pureLuck
+GET     /noWayJose                      controllers.DynamicRestrictionsController.noWayJose
+GET     /viewProfile                    controllers.DynamicRestrictionsController.viewProfile(userName: String)
+GET     /editPrinter                    controllers.PatternController.editPrinter
+GET     /detonatePrinter                controllers.PatternController.detonatePrinter
+GET     /editAnythingRegex              controllers.PatternController.editPrinterRegex
+GET     /rhp_in                         controllers.SubjectController.subjectPresent
+GET     /rhp_out                        controllers.SubjectController.subjectPresent_notLoggedIn
+GET     /rhnp_out                       controllers.SubjectController.subjectNotPresent
+GET     /rhnp_in                        controllers.SubjectController.subjectNotPresent_loggedIn
+GET     /bug                            controllers.EdgeCaseController.index
+GET     /deferredRestrict               controllers.DeferredController.deferredRestrict
+GET     /deferredRestrictions           controllers.DeferredController.deferredRestrictions
+GET     /deferredPattern                controllers.DeferredController.deferredPattern
+GET     /deferredDynamic                controllers.DeferredController.deferredDynamic
+GET     /deferredSubjectPresent         controllers.DeferredController.deferredSubjectPresent
+GET     /deferredSubjectNotPresent      controllers.DeferredController.deferredSubjectNotPresent
+GET     /unrestrictedIndex              controllers.UnrestrictedController.index
+GET     /unrestrictedOpen               controllers.UnrestrictedController.unrestrictedWithinAConstrainedController
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+#paciente
+GET     /paciente                    controllers.PacienteController.getPacientes()
+GET     /paciente/:id                controllers.PacienteController.getPaciente(id : Long)
+GET     /paciente/porNombre/:nombre  controllers.PacienteController.getPacienteByName(nombre : String)
+POST    /paciente                    controllers.PacienteController.createPaciente()
+DELETE  /paciente/:id                controllers.PacienteController.deletePaciente(id : Long)
+PUT     /paciente/:id                controllers.PacienteController.updatePaciente(id : Long)
+
+#sensor
+GET     /sensor                      controllers.SensorController.getSensores()
+GET     /sensor/:idSensor            controllers.SensorController.getSensor(idSensor : Long)
+POST    /sensor                      controllers.SensorController.createSensor()
+DELETE  /sensor/:idSensor            controllers.SensorController.deleteSensor(idSensor : Long)
+PUT     /sensor/:idSensor            controllers.SensorController.updateSensor(idSensor : Long)
+
+#Medicion
+GET     /medicion                    controllers.MedicionController.getMediciones()
+GET     /medicion/:id                controllers.MedicionController.getMedicion(id : Long)
+GET     /medicion/enRango/           controllers.MedicionController.getByFechas(inicio: String, fin : String)
+POST    /medicion                    controllers.MedicionController.createMedicion()
+DELETE  /medicion/:id                controllers.MedicionController.deleteMedicion(id : Long)
+PUT     /medicion/:id                controllers.MedicionController.updateMedicion(id : Long)
+
+#Medico
+GET     /medico                    controllers.MedicoController.getMedicos()
+GET     /medico/:id                controllers.MedicoController.getMedico(id : Long)
+POST    /medico                    controllers.MedicoController.createMedico()
+DELETE  /medico/:id                controllers.MedicoController.deleteMedico(id : Long)
+PUT     /medico/:id                controllers.MedicoController.updateMedico(id : Long)
+
+#Urgencias
+GET     /urgencia                    controllers.UrgenciaController.getUrgencias()
+GET     /urgencia/:id                controllers.UrgenciaController.getUrgencia(id : Long)
+POST    /urgencia                    controllers.UrgenciaController.createUrgencia()
+DELETE  /urgencia/:id                controllers.UrgenciaController.deleteUrgencia(id : Long)
+PUT     /urgencia/:id                controllers.UrgenciaController.updateUrgencia(id : Long)
+
+

@@ -1,0 +1,123 @@
+<div class="row-fluid" id="controller-Restrict">
+    <div class="span10">
+        <h3 class="subsection">Restrict</h3>
+
+        <p>A Restrict constraint allows you to OR role groups together.  For example, you could allow access to a user
+            that matches at least one of the following restrictions:</p>
+        <ul>
+            <li>medico</li>
+            <li>urgencias</li>
+        </ul>
+    </div>
+</div>
+<div class="row-fluid">
+    <div class="span5 columnHeader">Specification</div>
+    <div class="span5 columnHeader">Result</div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <pre>
+@@Restrict({@@Group("medico"),
+            @@Group("paciente")})
+public class RestrictController extends Controller</pre>
+    </div>
+    <div class="span5">
+        <iframe src="@routes.RestrictController.index"></iframe>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <pre>
+@@Restrict({@@Group({"medico", "paciente"})})
+public static Result restrictOne() {
+    return ok(accessOk.render());
+}</pre>
+    </div>
+    <div class="span5">
+        <iframe src="@routes.RestrictController.restrictOne"></iframe>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <pre>
+@@Restrict({@@Group({"urgencias"}), @@Group("medico")})
+public static Result restrictTwo() {
+    return ok(accessOk.render());
+}</pre>
+    </div>
+    <div class="span5">
+        <iframe src="@routes.RestrictController.restrictTwo"></iframe>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <pre>
+@@Restrict({@@Group("medico"), @@Group("!paciente")})
+public static Result restrictThree() {
+    return ok(accessOk.render());
+}</pre>
+    </div>
+    <div class="span5">
+        <iframe src="@routes.RestrictController.restrictThree"></iframe>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <pre>
+@@Restrict(@@Group({"urgencias", "medico"}))
+public static Result restrictFour() {
+    return ok(accessOk.render());
+}</pre>
+    </div>
+    <div class="span5">
+        <iframe src="@routes.RestrictController.restrictFour"></iframe>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+        <pre>
+@@Restrict(@@Group({"medico", "!paciente"}))
+public static Result restrictFive() {
+    return ok(accessOk.render());
+}</pre>
+    </div>
+    <div class="span5">
+        <iframe src="@routes.RestrictController.restrictFive"></iframe>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+    <pre>
+@@CustomRestrict(value = { @@RoleGroup({MyRoles.medico, MyRoles.paciente}),
+                          @@RoleGroup(MyRoles.urgencias)},
+                config = @@Restrict({}))
+public static Result customRestrictOne() {
+    return ok(accessOk.render());
+}</pre>
+    </div>
+    <div class="span5">
+        <iframe src="@routes.RestrictController.customRestrictOne"></iframe>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span5">
+    <pre>
+@@CustomRestrict(value = { @@RoleGroup({MyRoles.urgencias, MyRoles.medico}),
+                          @@RoleGroup({MyRoles.urgencias, MyRoles.paciente})},
+                config = @@Restrict({}))
+public static Result customRestrictTwo() {
+    return ok(accessOk.render());
+}</pre>
+    </div>
+    <div class="span5">
+        <iframe src="@routes.RestrictController.customRestrictTwo"></iframe>
+    </div>
+</div>
